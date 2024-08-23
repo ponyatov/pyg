@@ -8,14 +8,15 @@ PIP  = /usr/bin/pip3
 PEP  = /usr/bin/autopep8
 
 # src
-Y += $(wildcard *.py)
+Y += $(wildcard src/*.py)
 
 # all
 .PHONY: all
 all: run
 
 .PHONY: run
-run: $(Y)
+run: $(PY) $(Y)
+	$^
 
 # format
 .PHONY: format
