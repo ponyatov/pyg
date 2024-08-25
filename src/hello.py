@@ -40,8 +40,9 @@ def render():
     status().render()
     pygame.draw.polygon(disp, GREEN, ((146, top.rect.bottom+top.H), (screen.width-top.H, 106), (screen.width/5*4, 277),
                                       (56, 277), (0+top.H, 106)))
-    pygame.display.update()
 
+
+render()
 
 while True:  # game event loop
     for event in pygame.event.get():
@@ -54,3 +55,4 @@ while True:  # game event loop
                     case 3:
                         print(event)
     render()
+    pygame.display.update()
