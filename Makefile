@@ -32,4 +32,7 @@ update:
 	sudo apt update
 	sudo apt install -uy `cat apt.txt`
 ref:
-gz:
+gz: img/cat.png
+
+img/cat.png:
+	$(CURL) $@ http://invpy.com/cat.png
