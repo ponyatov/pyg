@@ -39,6 +39,35 @@ class status(bar):
     rect = pygame.Rect(0, screen.bottom - bar.H, screen.width, bar.H)
 
 
+class Cat:
+    def __init__(self, img='img/cat.png'):
+        self.img = pygame.image.load(img)
+        self.rect = self.img.get_rect()
+        self.rect.centerx = screen.centerx
+        self.rect.centery = screen.centery
+        self.dx = 3
+        self.dy = 2
+
+    def move(self):
+        if self.rect.right >= screen.right:
+            self.dx -= self.dx
+        if self.rect.bottom >= screen.bottom:
+            self.dy -= self.dy
+        if self.rect.left <= screen.left:
+            self.dx -= self.dx
+        if self.rect.top <= screen.top:
+            self.dy -= self.dy
+        self.rect.centerx += self.dx
+        self.rect.centery += self.dy
+
+    def render(self):
+        self.move()
+        disp.blit(self.img, (self.rect.x, self.rect.y))
+
+
+cat = Cat()
+
+
 def render():
     disp.fill(BG)
     top().render()
@@ -50,20 +79,11 @@ def render():
         (56, 277),
         (0 + top.H, 106)
     ))
+    cat.render()
 
 
-class Cat:
-    def __init__(self, img='img/cat.png'):
-        self.img = pygame.image.load(img)
-        self.rect = self.img.get_rect()
-        self.rect.centerx = screen.centerx
-        self.rect.centery = screen.centery
-
-    def render(self):
-        disp.blit(self.img, (self.rect.x, self.rect.y))
-
-
-cat = Cat()
+FPS = 60
+fps = pygame.time.Clock()
 
 render()
 while True:  # game event loop
@@ -76,6 +96,6 @@ while True:  # game event loop
                 match event.button:
                     case 3:
                         print(event)
-    # render()
-    cat.render()
+    render()
     pygame.display.update()
+    fps.tick(FPS)
