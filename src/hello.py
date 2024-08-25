@@ -38,8 +38,12 @@ def render():
     disp.fill(BG)
     top().render()
     status().render()
-    pygame.draw.polygon(disp, GREEN, ((146, top.rect.bottom + top.H), (screen.width - top.H, 106), (screen.width / 5 * 4, 277),
-                                      (56, 277), (0 + top.H, 106)))
+    pygame.draw.polygon(disp, GREEN, (
+        (146, top.rect.bottom + top.H),
+        (screen.width - top.H, 106),
+        (screen.width / 5 * 4, 277),
+        (56, 277), (0 + top.H, 106)
+    ))
 
 
 render()
