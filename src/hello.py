@@ -1,15 +1,49 @@
 import pygame
 import sys
-from pygame.locals import *
-
-W = 240
-H = 320
 
 pygame.init()
-DISPLAYSURF = pygame.display.set_mode((W, H))
+screen = pygame.Rect(0, 0, 240, 320)
+disp = pygame.display.set_mode((screen.width, screen.height))
 pygame.display.set_caption('Hello World!')
 
-while True:  # main game loop
+# colors
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+BG = (0x22, 0x22, 0x22)
+DG = (0x11, 0x11, 0x11)
+
+
+class bar:
+    # background color
+    back = DG
+    # height, pixels
+    H = 16
+
+    def render(self):
+        pygame.draw.rect(disp, self.back, self.rect)
+
+
+class top(bar):
+    rect = pygame.Rect(0, 0, screen.width, bar.H)
+
+
+class status(bar):
+    rect = pygame.Rect(0, screen.bottom-bar.H, screen.width, bar.H)
+
+
+def render():
+    disp.fill(BG)
+    top().render()
+    status().render()
+    pygame.draw.polygon(disp, GREEN, ((146, top.rect.bottom+top.H), (screen.width-top.H, 106), (screen.width/5*4, 277),
+                                      (56, 277), (0+top.H, 106)))
+    pygame.display.update()
+
+
+while True:  # game event loop
     for event in pygame.event.get():
         match event.type:
             case pygame.QUIT:
@@ -19,4 +53,4 @@ while True:  # main game loop
                 match event.button:
                     case 3:
                         print(event)
-    pygame.display.update()
+    render()
