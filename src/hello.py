@@ -31,19 +31,18 @@ class top(bar):
 
 
 class status(bar):
-    rect = pygame.Rect(0, screen.bottom-bar.H, screen.width, bar.H)
+    rect = pygame.Rect(0, screen.bottom - bar.H, screen.width, bar.H)
 
 
 def render():
     disp.fill(BG)
     top().render()
     status().render()
-    pygame.draw.polygon(disp, GREEN, ((146, top.rect.bottom+top.H), (screen.width-top.H, 106), (screen.width/5*4, 277),
-                                      (56, 277), (0+top.H, 106)))
+    pygame.draw.polygon(disp, GREEN, ((146, top.rect.bottom + top.H), (screen.width - top.H, 106), (screen.width / 5 * 4, 277),
+                                      (56, 277), (0 + top.H, 106)))
 
 
 render()
-
 while True:  # game event loop
     for event in pygame.event.get():
         match event.type:
@@ -54,5 +53,5 @@ while True:  # game event loop
                 match event.button:
                     case 3:
                         print(event)
-    render()
+    # render()
     pygame.display.update()
