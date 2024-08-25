@@ -1,8 +1,13 @@
 import pygame
 import sys
+import os
 
+# full screen startup
+os.environ['SDL_VIDEO_CENTERED'] = '1'
 pygame.init()
-screen = pygame.Rect(0, 0, 240, 320)
+info = pygame.display.Info()
+screen = pygame.Rect(0, 0, info.current_w, info.current_h)
+#
 disp = pygame.display.set_mode((screen.width, screen.height))
 pygame.display.set_caption('Hello World!')
 
