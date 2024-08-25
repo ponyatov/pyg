@@ -6,7 +6,7 @@ import os
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 pygame.init()
 info = pygame.display.Info()
-screen = pygame.Rect(0, 0, info.current_w, info.current_h)
+screen = pygame.Rect(0, 0, info.current_w / 3, info.current_h / 3)
 #
 disp = pygame.display.set_mode((screen.width, screen.height))
 pygame.display.set_caption('Hello World!')
@@ -52,6 +52,19 @@ def render():
     ))
 
 
+class Cat:
+    def __init__(self, img='img/cat.png'):
+        self.img = pygame.image.load(img)
+        self.rect = self.img.get_rect()
+        self.rect.centerx = screen.centerx
+        self.rect.centery = screen.centery
+
+    def render(self):
+        disp.blit(self.img, (self.rect.x, self.rect.y))
+
+
+cat = Cat()
+
 render()
 while True:  # game event loop
     for event in pygame.event.get():
@@ -64,4 +77,5 @@ while True:  # game event loop
                     case 3:
                         print(event)
     # render()
+    cat.render()
     pygame.display.update()
