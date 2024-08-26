@@ -49,16 +49,17 @@ class Cat:
         self.dy = 2
 
     def move(self):
-        if self.rect.right >= screen.right:
-            self.dx -= self.dx
-        if self.rect.bottom >= screen.bottom:
-            self.dy -= self.dy
-        if self.rect.left <= screen.left:
-            self.dx -= self.dx
-        if self.rect.top <= screen.top:
-            self.dy -= self.dy
         self.rect.centerx += self.dx
         self.rect.centery += self.dy
+        #
+        if self.rect.right >= screen.right:
+            self.dx = -self.dx
+        if self.rect.bottom >= screen.bottom:
+            self.dy = -self.dy
+        if self.rect.left <= screen.left:
+            self.dx = -self.dx
+        if self.rect.top <= screen.top:
+            self.dy = -self.dy
 
     def render(self):
         self.move()
